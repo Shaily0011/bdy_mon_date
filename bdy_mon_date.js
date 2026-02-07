@@ -18,8 +18,8 @@ for(let j=0;j<=month.length-1;j++){                               //month select
     count=2**j;
     if(confirm(`select your bdy month ${month[j]}`)){
         months_count=months_count+count;
-    }}
-
+    }
+}
 for(let i=0;i<=date.length-1;i++){                                //date
     count=2**i;
     if(confirm(`select your date ${date[i]}`)){
@@ -28,34 +28,23 @@ for(let i=0;i<=date.length-1;i++){                                //date
 }
 let month_31=[1,3,5,7,8,10,12];
 let month_30=[4,6,9,11];
-let feb=2; 
-if(months_count===feb){                          //check feb date
+let feb=2;
+if(months_count===feb){
     if(days_count<=29){
         document.getElementById("month").innerHTML=`According to your data Your bdy month is${months_count} Date is ${days_count}`;
     }
-    else{
-        document.getElementById("month").innerHTML=`Your data is not relevant feb `;
-    }
 }
-for(let m2=0;m2<=month_30-1;m2++){                          //check 30 date months
+for(let m2=0;m2<=month_30.length-1;m2++){
     if(months_count==month_30[m2]){
         if(days_count<=30){
         document.getElementById("month").innerHTML=`According to your data Your bdy month is${months_count} Date is ${days_count}`
-        }
     }
-    else{
-        document.getElementById("month").innerHTML=`Your data is not relevant 30 month`;
     }
 }
-for(let m1=0;m1<=month_31.length-1;m1++){                  //check 31 date months
+for(let m1=0;m1<=month_31.length-1;m1++){
     if(months_count==month_31[m1]){
         if(days_count<=31){
         document.getElementById("month").innerHTML=`According to your data Your bdy month is${months_count} Date is ${days_count}`;
         }
     }
-     else{
-        document.getElementById("month").innerHTML=`Your data is not relevant 31 months`;
-    }
 } 
-
-
