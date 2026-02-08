@@ -14,37 +14,43 @@ let date=[
 let count=0;
 let months_count=0;
 let days_count=0;
-for(let j=0;j<=month.length-1;j++){                               //month select
+for(let j=0;j<=month.length-1;j++){                               //month selection
     count=2**j;
     if(confirm(`select your bdy month ${month[j]}`)){
         months_count=months_count+count;
     }
 }
-for(let i=0;i<=date.length-1;i++){                                //date
+for(let i=0;i<=date.length-1;i++){                                //date selection
     count=2**i;
     if(confirm(`select your date ${date[i]}`)){
          days_count=days_count+count;
     }
 }
-let month_31=[1,3,5,7,8,10,12];
-let month_30=[4,6,9,11];
-let feb=2;
-if(months_count===feb){
-    if(days_count<=29){
-        document.getElementById("month").innerHTML=`According to your data Your bdy month is${months_count} Date is ${days_count}`;
-    }
-}
-for(let m2=0;m2<=month_30.length-1;m2++){
-    if(months_count==month_30[m2]){
-        if(days_count<=30){
-        document.getElementById("month").innerHTML=`According to your data Your bdy month is${months_count} Date is ${days_count}`
-    }
-    }
-}
-for(let m1=0;m1<=month_31.length-1;m1++){
-    if(months_count==month_31[m1]){
-        if(days_count<=31){
-        document.getElementById("month").innerHTML=`According to your data Your bdy month is${months_count} Date is ${days_count}`;
+let month_identify=[
+    [1,3,5,7,8,10,12],                     //these months having 31 days
+    [4,6,9,11],                            //these months having 30 days
+    [2]
+];
+let month_name=["Jan","Feb","March","April","May","June","July","August","Sep","Oct","Nov","Dec"];
+for(let m1=0;m1<=month_identify.length-1;m1++){
+    for(let m2=0;m2<=month_identify[m1].length-1;m2++){
+        if(months_count===month_identify[m1][m2]){
+            if(m1===0&&days_count<=31&&days_count>0){
+                document.getElementById("month").innerHTML=`According to your data Your bdy  is on  ${days_count}  ${month_name[months_count-1]}`;
+            }
+            else if(m1===1&&days_count<=30&&days_count>0){ 
+                document.getElementById("month").innerHTML=`According to your data Your bdy  is on  ${days_count}  ${month_name[months_count-1]}`;
+            }
+            else if(m1===2&&days_count<=29&&days_count>0){
+                document.getElementById("month").innerHTML=`According to your data Your bdy  is on ${days_count}  ${month_name[months_count-1]}`;
+            }
+            else{
+                document.getElementById("month").innerHTML=`According to your data  ${month_name[months_count-1]}'s date doesn't exist `;
+            }
+        }
+        else if(months_count>12||months_count===0){
+            document.getElementById("month").innerHTML=`According to your data month doesn't exist `;
         }
     }
-} 
+}
+    
